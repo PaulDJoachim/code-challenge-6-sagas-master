@@ -32,7 +32,7 @@ class AnimalForm extends Component {
         return (
             <form onSubmit={this.addAnimal} className="AnimalForm">
               <input onChange={this.setAnimal} placeholder="Animal"></input>
-                <label htmlFor="class">Choose a car:</label>
+                <label htmlFor="class">class:</label>
                 <select onChange={this.setClass} name="class" id="class">
                   <option value="1">Mammal</option>
                   <option value="2">Bird</option>

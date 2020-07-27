@@ -16,6 +16,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     // YOUR CODE HERE
   yield takeEvery('GET_ZOO_ANIMALS', getZoo);
+  yield takeEvery('ADD_ANIMAL', addAnimal);
 }
 
 
@@ -25,6 +26,19 @@ function* getZoo(){
     // in Sagas, replace `dispatch` with `put`
     console.log('response from getZoo saga', response.data)
     yield put({ type: 'SET_ZOO_ANIMALS', payload: response.data });
+  } catch (error) {
+      console.log('error with movie get request', error);
+  }
+}
+
+function* addAnimal(action){
+  try {
+    const response = yield axios.put('/zoo', action.payload);
+    console.log('attempting to add this to database:', action.payload)
+    // in Sagas, replace `dispatch` with `put`
+    console.log('response from addAnimal saga:', response.data)
+    // get the animals again after the new one has been added
+    yield put({ type: 'GET_ZOO_ANIMALS'});
   } catch (error) {
       console.log('error with movie get request', error);
   }

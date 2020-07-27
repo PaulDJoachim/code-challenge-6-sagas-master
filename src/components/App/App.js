@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AnimalList from '../AnimalList/AnimalList'
+import AnimalForm from '../AnimalForm/AnimalForm'
 import './App.css';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         </header>
         <br />
         <br />
+        <AnimalForm />
         <AnimalList />
       </div>
     );

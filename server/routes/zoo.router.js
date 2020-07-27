@@ -19,4 +19,28 @@ router.get('/', (req, res) => {
       });
 });
 
+
+router.put('/', (req, res) => {
+  // console.log(req.body)
+  const queryText = `
+    INSERT INTO species (species_name, class_id)
+    VALUES ($1, $2)
+      `
+  const queryValues = [
+    req.body.animal,
+    req.body.class
+  ]
+
+  pool.query(queryText, queryValues)
+  .then((result) => {
+      res.sendStatus(200);
+  })
+  .catch((error) => {
+      console.log(`***Error adding animal`, error);
+      res.sendStatus(500);
+  })
+});
+
+
+
 module.exports = router;
